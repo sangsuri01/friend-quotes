@@ -1,0 +1,111 @@
+* { box-sizing: border-box; }
+:root {
+  --bg: #fdf6ec;
+  --card: #ffffff;
+  --text: #2d2a26;
+  --muted: #8a8178;
+  --accent: #ff8a3d;
+  --accent-soft: #ffe6d3;
+  --border: #eee3d6;
+}
+body {
+  margin: 0;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 20px;
+}
+.hidden { display: none !important; }
+.muted { color: var(--muted); }
+
+.top {
+  max-width: 1000px; margin: 0 auto 20px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.top h1 { font-size: 1.6rem; margin: 0; }
+.mode-badge {
+  margin-right: auto; margin-left: 12px;
+  font-size: .75rem; color: var(--muted);
+  background: #f1ebe3; border-radius: 999px; padding: 4px 10px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.04);
+}
+.card h2 { margin-top: 0; font-size: 1.2rem; }
+
+button {
+  font: inherit; cursor: pointer;
+  border: 1px solid var(--border); background: #fff;
+  border-radius: 10px; padding: 8px 14px;
+}
+button:disabled { opacity: .5; cursor: not-allowed; }
+button.primary { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 600; }
+button.ghost { background: transparent; }
+button.small { font-size: .85rem; padding: 4px 10px; margin-top: 10px; }
+button.wide { width: 100%; margin-top: 16px; padding: 12px; }
+
+input, select, textarea {
+  font: inherit; width: 100%;
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 10px; background: #fffdfa;
+}
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
+
+/* setup */
+.setup { max-width: 480px; margin: 40px auto; }
+.row { display: flex; gap: 8px; }
+.chips { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 0; }
+.chips li {
+  background: var(--accent-soft); border-radius: 999px;
+  padding: 6px 8px 6px 14px; display: flex; align-items: center; gap: 6px;
+}
+.chips li button { border: none; background: transparent; padding: 0 4px; color: var(--muted); }
+
+/* layout */
+.layout {
+  max-width: 1000px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.1fr 1fr; gap: 20px; align-items: start;
+}
+@media (max-width: 780px) { .layout { grid-template-columns: 1fr; } }
+
+/* calendar */
+.cal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.cal-head h2 { margin: 0; }
+.cal-head button { font-size: 1.4rem; padding: 2px 12px; }
+.weekdays, .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; }
+.weekdays span { font-size: .85rem; color: var(--muted); padding: 6px 0; }
+.sun { color: #e5534b !important; }
+.sat { color: #3d7bd9 !important; }
+.day-cell {
+  aspect-ratio: 1; border-radius: 10px; border: 1px solid transparent;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: relative; background: #fffdfa; padding: 0;
+}
+.day-cell:hover { border-color: var(--accent); }
+.day-cell.empty { visibility: hidden; }
+.day-cell.today { font-weight: 700; border-color: var(--accent); }
+.day-cell.selected { background: var(--accent); color: #fff !important; }
+.day-cell .badge {
+  font-size: .7rem; margin-top: 2px;
+  background: var(--accent-soft); color: var(--accent);
+  border-radius: 999px; padding: 0 6px; font-weight: 700;
+}
+.day-cell.selected .badge { background: #fff; }
+
+/* quotes */
+.quote-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.quote-form label { display: flex; flex-direction: column; gap: 4px; font-size: .9rem; color: var(--muted); }
+.quotes { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.quotes li {
+  border-left: 4px solid var(--accent); background: #fffaf4;
+  border-radius: 10px; padding: 12px 14px; position: relative;
+}
+.quotes .text { font-size: 1.05rem; white-space: pre-wrap; word-break: break-word; margin: 0 24px 6px 0; }
+.quotes .who { color: var(--muted); font-size: .9rem; }
+.quotes .del { position: absolute; top: 8px; right: 8px; border: none; background: transparent; color: var(--muted); }
+.quotes .empty-msg { border: none; background: none; color: var(--muted); text-align: center; }

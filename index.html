@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>친구 어록 모음집</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top">
+    <h1>📜 친구 어록 모음집</h1>
+    <button id="editFriendsBtn" class="ghost hidden">👥 친구 관리</button>
+  </header>
+
+  <!-- 로딩 / 오류 안내 -->
+  <section id="statusView" class="card setup">
+    <p id="statusText" class="muted">불러오는 중...</p>
+  </section>
+
+  <!-- 1. 이름 설정 화면 -->
+  <section id="setupView" class="card setup hidden">
+    <h2>먼저 친구들 이름을 등록해 주세요</h2>
+    <p class="muted">어록을 남길 때 누가 한 말인지 고를 수 있어요.</p>
+    <form id="friendForm" class="row">
+      <input id="friendInput" type="text" placeholder="친구 이름 입력" maxlength="20" autocomplete="off" />
+      <button type="submit">추가</button>
+    </form>
+    <ul id="friendList" class="chips"></ul>
+    <button id="doneSetupBtn" class="primary wide" disabled>완료하고 시작하기 →</button>
+  </section>
+
+  <!-- 2. 메인 화면 -->
+  <main id="mainView" class="layout hidden">
+    <section class="card calendar">
+      <div class="cal-head">
+        <button id="prevMonth" class="ghost" aria-label="이전 달">‹</button>
+        <h2 id="monthLabel"></h2>
+        <button id="nextMonth" class="ghost" aria-label="다음 달">›</button>
+      </div>
+      <div class="weekdays">
+        <span class="sun">일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span class="sat">토</span>
+      </div>
+      <div id="calGrid" class="grid"></div>
+      <button id="todayBtn" class="ghost small">오늘로 이동</button>
+    </section>
+
+    <section class="card day">
+      <h2 id="selectedLabel"></h2>
+      <form id="quoteForm" class="quote-form">
+        <label>
+          누가 했나요?
+          <select id="friendSelect"></select>
+        </label>
+        <label>
+          어록
+          <textarea id="quoteInput" rows="3" placeholder="명언을 적어주세요..." maxlength="500"></textarea>
+        </label>
+        <label>
+          날짜
+          <input id="dateInput" type="date" />
+        </label>
+        <button type="submit" class="primary">저장하기</button>
+      </form>
+      <ul id="quoteList" class="quotes"></ul>
+    </section>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
